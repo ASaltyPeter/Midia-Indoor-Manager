@@ -1,0 +1,11 @@
+{
+  "name": "domhelpers",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "chielkunkels",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chielkunkels/domhelpers.git"
+  }
+}

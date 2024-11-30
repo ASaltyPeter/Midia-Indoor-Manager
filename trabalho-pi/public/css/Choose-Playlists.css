@@ -1,0 +1,134 @@
+/* Estilos Gerais */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1c1c1c;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.playlist-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  padding: 0 15px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1000px; /* Aumentando a largura máxima da grid */
+  width: 100%;
+  padding-bottom: 50px; /* Espaço extra para o scroll */
+}
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estilo dos Cards */
+.card {
+  position: relative;
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #2e2e2e;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  height: 350px; /* Aumentando a altura dos cards */
+}
+
+.card img {
+  width: 100%;
+  height: 90%; /* Ajustando a altura da imagem dentro do card */
+  object-fit: cover;
+}
+
+.card-title {
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 18px; /* Ajustando o tamanho da fonte */
+}
+
+/* Estilo do Card de Criação */
+.create-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #444;
+  height: 350px; /* Garantindo que o card de criação tenha o mesmo tamanho */
+  position: relative;
+}
+
+.center-button {
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Estilo da Sobreposição para Reprodução e Edição */
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .card-overlay {
+  opacity: 1;
+}
+
+.left-half, .right-half {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.left-half {
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.left-half:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.right-half:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.center-button {
+  font-size: 30px; /* Ajustando o tamanho do botão de criação */
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.6); /* Fundo para destacar o botão */
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: flex; /* Usar flexbox para o centro do conteúdo */
+  align-items: center;
+  justify-content: center;
+  position: absolute; /* Colocar o botão em posição absoluta */
+  top: 50%; /* Ajuste para a vertical */
+  left: 50%; /* Ajuste para a horizontal */
+  transform: translate(-50%, -50%); /* Centralização precisa */
+}

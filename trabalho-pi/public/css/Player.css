@@ -1,0 +1,204 @@
+ /* Reset geral */
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Fundo escuro para toda a página */
+    color: #ffffff; /* Cor de texto clara para o conteúdo geral */
+  }
+  
+  /* Layout do container */
+  .container {
+    display: flex;
+    height: 97vh;
+  }
+  
+  /* Seção de notícias */
+  .news-section {
+    background-color: #1e1e1e;
+    width: 15%; /* Largura da seção de notícias */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    overflow-y: hidden; /* Rolagem se o conteúdo ultrapassar */
+    border-right: 2px solid #333; 
+  }
+  
+  /* Estilo dos cards de notícias */
+  .news-card {
+    background-color: #2c2c2c; 
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 5px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .news-card img {
+    width: 100%;
+    max-height: 150px;
+    object-fit: cover; /* Mantém a proporção */
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .news-card h3 {
+    font-size: 18px;
+    color: #ffffff; /* Cor clara para os títulos */
+    margin-bottom: 5px;
+  }
+  
+  .news-card p {
+    font-size: 14px;
+    color: #ddd; /* Cinza claro para as descrições */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Uma única linha */
+  }
+  
+  /* Seção principal */
+  .main-section {
+    width: 85%; /* Ajustado para preencher o espaço restante */
+    display: flex;
+    flex-direction: column;
+    background-color: #1e1e1e; /* Fundo cinza escuro */
+  }
+  
+  .player-section video {
+    width: 100%; /* Ocupa toda a largura do elemento pai */
+    height: 100%; /* Ocupa toda a altura do elemento pai */
+    object-fit: contain; /* Ajusta o vídeo para caber na área sem cortar */
+  }
+  
+  /* Estilo da seção de previsão do tempo */
+  .weather-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center; /* Centraliza os itens verticalmente */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px;
+    border-top: 2px solid #333;
+    background: linear-gradient(to right, #001f3f, #003366, #004080); /* Fundo com gradiente */
+  }
+  
+  .clock-container {
+    width: 100%; /* Largura total para centralizar */
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    padding: 10px 0; /* Ajusta o espaçamento */
+  }
+  
+  /* Estilo dos cards de previsão do tempo */
+  .weather-card {
+    background-color: #2c2c2c;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    margin: 5px;
+    padding: 10px;
+    width: 140px; /* Tamanho ajustado */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .weather-icon {
+    width: 50px;
+    height: auto;
+  }
+.reprodutor {
+  flex-grow: 1; /* Faz com que a div ocupe todo o espaço disponível */
+  display: flex;
+  justify-content: center; /* Centraliza o conteúdo horizontalmente */
+  align-items: center; /* Centraliza o conteúdo verticalmente */
+  background-color: #333; /* Cor de fundo */
+  padding: 10px; /* Um pouco de espaçamento interno */
+  overflow: hidden; /* Evita que o conteúdo transborde da div */
+  position: relative;
+  box-sizing: border-box;  /* Garante que o conteúdo dentro possa ser posicionado em relação ao reprodutor */
+}
+
+.canvas {
+  position: relative; /* Permite o posicionamento absoluto do texto sobre a mídia */
+  height: 80%; /* Área maior para o vídeo/imagem */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Evita transbordamento do vídeo */
+  background-color: #2c2c2c; /* Cor de fundo para a área de mídia */
+}
+
+/* Ajustes no conteúdo de vídeo/imagem */
+.canvas img, .reprodutor video {
+  width: 100%; /* Faz com que o conteúdo ocupe toda a largura */
+  height: 100%; /* Faz com que o conteúdo ocupe toda a altura */
+  object-fit: cover; /* Garante que a imagem/vídeo ocupe totalmente o espaço sem distorção */
+}
+
+/* Texto sobre o conteúdo */
+.canvas .texto {
+  position: absolute; /* Posiciona o texto sobre a imagem/vídeo */
+  top: 50%; /* Centraliza verticalmente */
+  left: 50%; /* Centraliza horizontalmente */
+  transform: translate(-50%, -50%); /* Ajuste fino para centralizar */
+  padding: 20px;
+  color: white; /* Cor do texto */
+  background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente para o texto */
+  max-width: 90%; /* Limita a largura do texto para não extrapolar */
+  overflow-y: auto; /* Permite rolagem se o texto for muito longo */
+  text-align: center; /* Alinha o texto ao centro */
+  z-index: 1; /* Garante que o texto fique acima da imagem/vídeo */
+}
+
+  .weather-card h4 {
+    margin: 5px 0;
+    color: #fff;
+  }
+  
+  .current-temp {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffb400;
+    margin-bottom: 10px;
+  }
+  
+  .temp-range {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 14px;
+    color: #fff; /* Cor de destaque */
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    padding-bottom: 10px;
+  }
+  
+  /* Estilo para a chance de chuva */
+  .rain-chance {
+    font-size: 12px;
+    color: #ddd; /* Cinza claro */
+  }
+  
+  .weather-card p {
+    margin: 2px 0;
+    color: #ddd; /* Cinza claro para temperatura e informações adicionais */
+    font-size: 14px;
+  }
+  
+  .footer-text {
+    font-size: 18px; /* Ajuste de tamanho de fonte conforme necessário */
+    color: #fff; /* Cor branca */
+    text-align: center;
+  }
+  

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Playlist</title>
+    <link rel="stylesheet" href="/css/Playlist-Editor.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.14.0/Sortable.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div id="recent-uploads-container"></div>
+        </aside>
+
+        <section id="playlist-container">
+            <div id="slides" class="sortable-container"></div>
+        </section>
+
+        <section class="actions">
+            <div id="add-slide">+</div>
+            <button id="save-playlist">Salvar Playlist</button>
+            <button id="play-playlist">Iniciar Playlist</button>
+        </section>
+    </div>
+
+    <!-- Popup para adicionar slide -->
+    <div id="media-popup" class="popup">
+        <div class="popup-content">
+            <h2>Adicionar Slide</h2>
+            <button id="add-text-btn" class="btn-option">Adicionar Texto</button>
+            <button id="add-image-btn" class="btn-option">Adicionar Imagem</button>
+            <button id="add-video-btn" class="btn-option">Adicionar Vídeo</button>
+            <button class="btn-close" data-popup-close>Fechar</button>
+        </div>
+    </div>
+
+    <!-- Popup para editor de texto -->
+    <div id="text-editor-popup" class="popup">
+        <div class="popup-content">
+            <h2>Editor de Texto</h2>
+            <textarea id="tinymce-editor"></textarea>
+            <label for="background-color">Cor de Fundo:</label>
+            <input type="color" id="background-color" value="#ffffff">
+            <label for="background-image">Imagem de Fundo:</label>
+            <input type="file" id="background-image" accept="image/*">
+            <div id="text-preview"></div>
+            <button id="save-text" class="btn-close">Salvar Slide</button>
+            <button class="btn-close" data-popup-close>Fechar</button>
+        </div>
+    </div>
+
+    <!-- Popup para upload de imagem -->
+    <div id="image-upload-popup" class="popup">
+        <div class="popup-content">
+            <button class="btn-close" data-popup-close>Fechar</button>
+            <h2>Upload de Imagem</h2>
+            <div id="image-drop-area" class="drop-area">
+                <p>Arraste e solte a imagem aqui ou clique para selecionar.</p>
+                <input type="file" id="image-upload-input" accept="image/*">
+            </div>
+            <div id="image-preview" class="preview-area"></div>
+        </div>
+    </div>
+
+    <!-- Popup para upload de vídeo -->
+    <div id="video-upload-popup" class="popup">
+        <div class="popup-content">
+            <button class="btn-close" data-popup-close>Fechar</button>
+            <h2>Upload de Vídeo</h2>
+            <div id="video-drop-area" class="drop-area">
+                <p>Arraste e solte o vídeo aqui ou clique para selecionar.</p>
+                <input type="file" id="video-upload-input" accept="video/*">
+            </div>
+            <div id="video-preview" class="preview-area"></div>
+        </div>
+    </div>
+
+    <!-- Popup para salvar playlist -->
+    <div id="save-playlist-popup" class="popup" style="display:none;">
+        <div class="popup-content">
+            <button class="btn-close" id="close-save-playlist-popup">Fechar</button>
+            <h2>Salvar Playlist</h2>
+            <label for="playlist-name">Nome da Playlist:</label>
+            <input type="text" id="playlist-name" placeholder="Insira o nome da playlist">
+            
+            <label for="playlist-cover">Selecionar Capa:</label>
+            <div id="cover-drop-area" class="drop-area">
+                Arraste e solte uma imagem aqui ou clique para selecionar uma
+                <input type="file" id="upload-cover-input" accept="image/*" style="display:none;" />
+                <img id="cover-preview" src="" alt="Pré-visualização" style="display:none; max-width: 100%; margin-top: 10px;" />
+            </div>
+            
+            <button id="confirm-save-playlist">Salvar</button>
+        </div>
+    </div>
+    
+    
+
+    <script src="/js/Playlist-Editor.js"></script>
+    <script src="/tinymce/tinymce.min.js"></script>
+</body>
+</html>

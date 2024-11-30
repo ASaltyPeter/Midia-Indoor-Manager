@@ -1,0 +1,288 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c; /* Fundo escuro */
+    color: #fff; /* Cor de texto branca */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* Remove barra de rolagem */
+}
+
+/* Container principal */
+.container {
+    display: grid;
+    grid-template-columns: 1fr 4fr; /* Sidebar ocupa 1/5, o restante para o conteúdo */
+    grid-template-rows: 1fr auto; /* Playlist ocupa a maior parte, barra de ações na parte inferior */
+    gap: 20px;
+    width: 100%; /* Ocupa toda a largura */
+    height: 100%; /* Ocupa toda a altura */
+    padding: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+    grid-row: 1 / span 2; /* Sidebar ocupa toda a altura */
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Expande ou reduz colunas conforme o espaço */
+    gap: 15px; /* Espaçamento entre os itens */
+    overflow-y: auto; /* Permite rolagem se necessário */
+}
+
+/* Container de uploads recentes */
+#recent-uploads-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Layout responsivo */
+    gap: 15px; /* Espaçamento entre os itens */
+    padding: 10px; /* Espaçamento interno */
+}
+
+/* Itens na área de uploads recentes */
+.upload-item {
+    width: 120px; /* Largura padrão */
+    height: 120px; /* Altura padrão */
+    background-color: #444;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease; /* Animação ao passar o mouse */
+}
+
+.upload-item:hover {
+    transform: scale(1.05); /* Leve aumento ao passar o mouse */
+}
+
+/* Ajusta imagens e vídeos dentro de upload-item */
+.upload-item img,
+.upload-item video {
+    width: 100%; /* Ajusta à largura do container */
+    height: 100%; /* Ajusta à altura do container */
+    object-fit: cover; /* Preenche o espaço mantendo proporções */
+    border-radius: 8px;
+}
+
+/* Área de Playlist */
+#slides.sortable-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    overflow-y: auto;
+    height: calc(100vh - 150px);
+    width: calc(100% - 40px); /* Ajusta a largura para considerar a margem */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #333;
+    margin: 20px; /* A margem será mantida, mas a largura é ajustada */
+    box-sizing: border-box; /* Inclui bordas e preenchimento no cálculo do tamanho */
+}
+
+/* Estilo para os itens dentro do #slides */
+#slides.sortable-container .sortable-item {
+    background-color: #333;  /* Cor de fundo preto */
+    border: 2px solid #cccccc;  /* Borda suave */
+    border-radius: 10px;  /* Cantos arredondados */
+    padding: 10px;  /* Preenchimento interno */
+    width: 400px;  /* Largura fixa do card */
+    height: 500px;  /* Altura fixa do card */
+    box-sizing: border-box;  /* Inclui padding e border no cálculo do tamanho */
+    display: flex;
+    justify-content: center;  /* Centraliza o conteúdo horizontalmente */
+    align-items: center;  /* Centraliza o conteúdo verticalmente */
+    overflow: hidden;  /* Garante que o conteúdo não ultrapasse os limites do card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;  /* Transições suaves */
+}
+
+/* Efeito de hover para destacar o card */
+#slides.sortable-container .sortable-item:hover {
+    transform: scale(1.05);  /* Aumenta ligeiramente o card */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);  /* Sombra mais forte ao passar o mouse */
+}
+
+/* Estilo para o conteúdo do card (ex: texto, imagens, vídeos) */
+#slides.sortable-container .sortable-item .content {
+    width: 90%;  /* Ocupa toda a largura do card */
+    height: auto;  /* Ajusta automaticamente a altura do conteúdo */
+    max-height: 100%;  /* Limita a altura do conteúdo ao tamanho do card */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;  /* Impede que o conteúdo ultrapasse o limite */
+}
+
+/* Imagens e vídeos dentro do card devem manter suas proporções, adaptando-se à largura */
+#slides.sortable-container .sortable-item img,
+#slides.sortable-container .sortable-item video {
+    max-width: 100%;  /* Ajusta a largura ao tamanho do card */
+    height: auto;  /* Mantém a altura proporcional */
+    object-fit: contain;  /* Garantir que o conteúdo não distorça */
+}
+
+/* Ajuste do layout do contêiner de slides para garantir boa organização */
+#slides.sortable-container {
+    display: flex;
+    flex-wrap: wrap;  /* Permite que os itens se ajustem em várias linhas */
+    gap: 15px;  /* Espaçamento entre os itens */
+    justify-content: start;  /* Alinha os itens à esquerda */
+    padding: 20px;  /* Preenchimento geral do contêiner */
+}
+
+/* Botão de fechar no canto superior direito */
+.delete-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #ff4d4d;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* Efeito hover do botão de fechar */
+ .delete-button:hover {
+    background-color: #e60000; /* Cor ao passar o mouse */
+    transform: scale(1.1); /* Leve aumento no tamanho */
+  }
+  
+  /* Bolha de tempo no canto inferior esquerdo */
+.time-bubble {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 12px;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: default; /* Cursor padrão, já que geralmente não é clicável */
+  }
+  
+  /* Efeito hover opcional para a bolha de tempo */
+.time-bubble:hover {
+    background-color: #0056b3; /* Cor azul mais escura */
+  }
+  
+
+/* Barra de Ações */
+.actions {
+    grid-row: 2 / 3; /* Fixa a barra de ações na parte inferior */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #333;
+    border-radius: 15px;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Sombra superior */
+}
+
+/* Botão de adicionar slide */
+#add-slide {
+    width: 60px;
+    height: 60px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Botões de ação */
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Preview area */
+.preview-area {
+    margin-top: 15px;
+    text-align: center;
+    max-height: 380px; /* Define altura máxima */
+    overflow-y: auto; /* Adiciona barra de rolagem vertical se necessário */
+    border: 1px solid #444; /* Opcional: borda para destacar a área */
+    padding: 10px; /* Espaçamento interno */
+    background-color: #2a2a2a; /* Fundo para destacar a área */
+    border-radius: 8px;
+}
+
+.preview-area img,
+.preview-area video {
+    max-width: 100%;
+    max-height: 100px; /* Limita a altura de cada preview */
+    object-fit: cover; /* Ajusta a proporção da imagem/vídeo */
+    margin-bottom: 10px; /* Espaçamento entre os elementos */
+    border-radius: 5px; /* Borda arredondada para os previews */
+}
+
+/* Popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #333;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 40%; /* Tamanho fixo para popups */
+    max-width: 500px;
+}
+
+.popup.show {
+    display: flex;
+}
+
+/* Drop area */
+.drop-area {
+    border: 2px dashed #007bff;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    background-color: #1c1c1c;
+    cursor: pointer;
+}
+
+.drop-area:hover {
+    background-color: #333;
+}

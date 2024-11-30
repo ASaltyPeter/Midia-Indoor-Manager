@@ -1,0 +1,6 @@
+2024-08-27 18:39:17: Init DataDir at: C:\laragon\data\mysql-8
+2024-08-28 15:04:51: nothing
+2024-11-07 15:03:43: Graceful shutdown failed!!! Did you change the root's password? - trying to force it shutdown...
+ERROR: mysqladmin: connect to server at 'localhost' failed
+error: 'Too many connections'
+
