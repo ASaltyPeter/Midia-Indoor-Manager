@@ -85,24 +85,48 @@ function resetIDS(){
 }
 
 
-function editDeviceName(index) {
+async function editDeviceName(index) {
     const device = Devices[index];
     const deviceNameElement = document.querySelectorAll('.device-name')[index];
+    
+    // Use prompt to get the new device name
+    const newName = prompt("Enter a new name for the device:", device.name);
+    
+    // Check if user didn't cancel the prompt
+    if (newName !== null && newName.trim() !== '') {
+        try {
+            // Send request to update device name
+            const response = await fetch('/api/update-device', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    uuid: device.uuid, // Assuming the device object has a uuid property
+                    name: newName.trim()
+                })
+            });
 
-    const input = document.createElement("input");
-    input.type = "text";
-    input.value = device.name;
-    input.className = "edit-input";
+            const result = await response.json();
 
-    deviceNameElement.replaceWith(input);
-    input.focus();
+            if (result.success) {
+                // Update the device name in the local array
+                device.name = newName.trim();
+                
+                // Update the displayed name
+                deviceNameElement.textContent = newName.trim();
 
-    input.addEventListener("blur", () => saveDeviceName(input, index));
-    input.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-            saveDeviceName(input, index);
+                // Optional: Show a success message
+                alert(result.message);
+            } else {
+                // Show error message if update failed
+                alert(result.message);
+            }
+        } catch (error) {
+            console.error('Error updating device name:', error);
+            alert('Failed to update device name. Please try again.');
         }
-    });
+    }
 }
 
 async function saveDeviceName(input, index) {
